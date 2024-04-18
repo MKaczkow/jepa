@@ -28,12 +28,13 @@ parser.add_argument(
 
 def process_main(rank, fname, world_size, devices):
     import os
-    os.environ['CUDA_VISIBLE_DEVICES'] = str(devices[rank].split(':')[-1])
+    # os.environ['CUDA_VISIBLE_DEVICES'] = str(devices[rank].split(':')[-1])
 
     import logging
     logging.basicConfig()
     logger = logging.getLogger()
-    if rank == 0:
+    # if rank == 0:
+    if True:
         logger.setLevel(logging.INFO)
     else:
         logger.setLevel(logging.ERROR)
@@ -51,7 +52,7 @@ def process_main(rank, fname, world_size, devices):
     # Init distributed (access to comm between GPUS on same machine)
     world_size, rank = init_distributed(rank_and_world_size=(rank, world_size))
     logger.info(f'Running... (rank: {rank}/{world_size})')
-
+    
     # Launch the eval with loaded config
     eval_main(params['eval_name'], args_eval=params)
 
