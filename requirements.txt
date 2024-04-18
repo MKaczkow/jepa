@@ -11,3 +11,5 @@ decord
 pandas
 einops
 beartype
+pyyaml
+timm
